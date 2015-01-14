@@ -102,10 +102,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MyCell", forIndexPath: indexPath) as UITableViewCell
+        //let cell = tableView.dequeueReusableCellWithIdentifier("MyCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "MyCell")
         
         let object = objects[indexPath.row] as String
         cell.textLabel!.text = object
+        cell.detailTextLabel!.text = "detail text"  // TODO:あとで設定する(再生数)
+        cell.imageView?.image = UIImage(named: "icon_test.png") // TODO:あとで設定する(サムネイル)
         return cell
     }
     

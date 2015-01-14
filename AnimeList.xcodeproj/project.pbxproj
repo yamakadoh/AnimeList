@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FAD8BD11A669D900038CFB8 /* icon_test.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAD8BD01A669D900038CFB8 /* icon_test.png */; };
 		3FF208F31A63E61E0088E729 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF208F21A63E61E0088E729 /* AppDelegate.swift */; };
 		3FF208F51A63E61E0088E729 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF208F41A63E61E0088E729 /* MasterViewController.swift */; };
 		3FF208F71A63E61E0088E729 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF208F61A63E61E0088E729 /* DetailViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FAD8BD01A669D900038CFB8 /* icon_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_test.png; sourceTree = "<group>"; };
 		3FF208ED1A63E61E0088E729 /* AnimeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF208F11A63E61E0088E729 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FF208F21A63E61E0088E729 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				3FF208F81A63E61E0088E729 /* Main.storyboard */,
 				3FF208FB1A63E61E0088E729 /* Images.xcassets */,
 				3FF208FD1A63E61E0088E729 /* LaunchScreen.xib */,
+				3FAD8BD01A669D900038CFB8 /* icon_test.png */,
 				3FF208F01A63E61E0088E729 /* Supporting Files */,
 			);
 			path = AnimeList;
@@ -195,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FAD8BD11A669D900038CFB8 /* icon_test.png in Resources */,
 				3FF208FA1A63E61E0088E729 /* Main.storyboard in Resources */,
 				3FF208FF1A63E61E0088E729 /* LaunchScreen.xib in Resources */,
 				3FF208FC1A63E61E0088E729 /* Images.xcassets in Resources */,
@@ -409,6 +413,7 @@
 				3FF209101A63E61E0088E729 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3FF209111A63E61E0088E729 /* Build configuration list for PBXNativeTarget "AnimeListTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +422,7 @@
 				3FF209131A63E61E0088E729 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
