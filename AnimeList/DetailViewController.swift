@@ -8,9 +8,24 @@
 
 import UIKit
 
+class VideoInfo {
+    var title: String
+    var countPlay: Int
+    var url: String
+    var thumbnail: String
+    
+    init(title: String, countPlay: Int, url: String, thumbnail: String) {
+        self.title = title
+        self.countPlay = countPlay
+        self.url = url
+        self.thumbnail = thumbnail
+    }
+}
+
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var objects = NSMutableArray()
+    var videoInfoObjects = NSMutableArray()
     var detailItem: AnyObject? {
         didSet {
             // Update the view.
@@ -77,9 +92,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.resultArray = dict["items"] as NSArray
             for item in self.resultArray {
                 let snippet = item["snippet"] as NSDictionary
-                let title = snippet["title"] as String
-                //self.objects.insertObject(title as String, atIndex: 0)
-                self.objects.addObject(title as String)
+                let count = 1000    // あとで設定する（検索結果に含まれないから別のAPIを叩く必要がある？）
+                let videoId = (item["id"] as NSDictionary)["videoId"] as String
+                let thumbnail = ((snippet["thumbnails"] as NSDictionary)["default"] as NSDictionary)["url"] as String
+                let info = VideoInfo(title: snippet["title"] as String, countPlay: count, url: "http://www.youtube.com/watch?v=" + videoId, thumbnail: thumbnail)
+                self.videoInfoObjects.addObject(info)
             }
             
             // テーブルビューの更新をするため、メインスレッドにスイッチする
@@ -98,17 +115,22 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Table View
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return videoInfoObjects.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier("MyCell", forIndexPath: indexPath) as UITableViewCell
         let cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "MyCell")
         
-        let object = objects[indexPath.row] as String
-        cell.textLabel!.text = object
-        cell.detailTextLabel!.text = "detail text"  // TODO:あとで設定する(再生数)
-        cell.imageView?.image = UIImage(named: "icon_test.png") // TODO:あとで設定する(サムネイル)
+        let object = videoInfoObjects[indexPath.row] as VideoInfo
+        cell.textLabel!.text = object.title
+        cell.detailTextLabel!.text = "再生数:" + object.countPlay.description
+        cell.imageView?.image = UIImage(named: "icon_test.png")
+        NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: NSURL(string: object.thumbnail)!), queue:NSOperationQueue.mainQueue()){(res, data, err) in
+            let image = UIImage(data: data)
+            cell.imageView?.image = image
+        }
+        
         return cell
     }
     
