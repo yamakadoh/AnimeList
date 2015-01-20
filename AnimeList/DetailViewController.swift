@@ -22,7 +22,7 @@ class VideoInfo {
     }
 }
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     var objects = NSMutableArray()
     var videoInfoObjects = NSMutableArray()
@@ -33,14 +33,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     var resultArray: NSArray = []
+    var searchBar = UISearchBar(frame: CGRectMake(0, 0, 320, 44))
     
     func configureView() {
         // Update the user interface for the detail item.
         if let detail: AnyObject = self.detailItem {
         }
 
-        self.navigationItem.title = "Youtube検索結果"
-        
         // Status Barの高さを取得する.
         let barHeight: CGFloat = UIApplication.sharedApplication().statusBarFrame.size.height
         
@@ -62,6 +61,20 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // Viewに追加する.
         self.view.addSubview(myTableView)
+        
+        
+        
+        // 検索バー
+        //var searchBar = UISearchBar(frame: CGRectMake(0, 0, 320, 44))
+        searchBar.tintColor = UIColor.darkGrayColor()
+        searchBar.placeholder = "Youtube検索"
+        searchBar.text = self.detailItem as String
+        searchBar.keyboardType = UIKeyboardType.Default
+        searchBar.showsCancelButton = true
+        searchBar.delegate = self
+        
+        self.navigationItem.titleView = searchBar   // UINavigationBar上に、UISearchBarを追加
+        //searchBar.becomeFirstResponder()  // 検索バーにフォーカスを設定
     }
 
     override func viewDidLoad() {
@@ -140,5 +153,23 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let videoId = (item["id"] as NSDictionary)["videoId"] as String
         let url = NSURL(string: "http://www.youtube.com/watch?v=" + videoId)
         UIApplication.sharedApplication().openURL(url!)
+    }
+
+
+    // MARK: - UISearchBar
+    // テキストが変更される毎に呼ばれる
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.text = searchText
+    }
+    
+    // Cancelボタンが押された時に呼ばれる
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.text = self.detailItem as String
+        searchBar.resignFirstResponder()    // キーボードを閉じる
+    }
+
+    // Searchボタンが押された時に呼ばれる
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()    // キーボードを閉じる
     }
 }
