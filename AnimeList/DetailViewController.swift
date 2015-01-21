@@ -70,7 +70,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchBar.placeholder = "Youtube検索"
         searchBar.text = self.detailItem as String
         searchBar.keyboardType = UIKeyboardType.Default
-        searchBar.showsCancelButton = true
         searchBar.delegate = self
         
         self.navigationItem.titleView = searchBar   // UINavigationBar上に、UISearchBarを追加
@@ -157,6 +156,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
 
     // MARK: - UISearchBar
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(true, animated: true)
+        return true
+    }
+    
     // テキストが変更される毎に呼ばれる
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.text = searchText
@@ -164,6 +168,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Cancelボタンが押された時に呼ばれる
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        
         searchBar.text = self.detailItem as String
         searchBar.resignFirstResponder()    // キーボードを閉じる
     }
