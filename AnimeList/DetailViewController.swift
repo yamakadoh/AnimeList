@@ -40,8 +40,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let detail: AnyObject = self.detailItem {
         }
 
-        // Status Barの高さを取得する.
-        let barHeight: CGFloat = UIApplication.sharedApplication().statusBarFrame.size.height
+        // ステータスバーとナビゲーションバーの高さを取得する.
+        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
+        let navigationBarHeight = (UIApplication.sharedApplication().delegate as AppDelegate).sharedData["navigationBarHeight"] as CGFloat
+        let barHeight: CGFloat = statusBarHeight + navigationBarHeight
         
         // Viewの高さと幅を取得する.
         let displayWidth: CGFloat = self.view.frame.width

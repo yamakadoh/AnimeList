@@ -25,6 +25,9 @@ class MasterViewController: UITableViewController {
 //        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
 //        self.navigationItem.rightBarButtonItem = addButton
         
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.sharedData["navigationBarHeight"] = self.navigationController?.navigationBar.frame.size.height
+        
         // 番組表の取得
         getAnimeList()
     }
