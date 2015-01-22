@@ -25,8 +25,6 @@ class MasterViewController: UITableViewController {
 //        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
 //        self.navigationItem.rightBarButtonItem = addButton
         
-        self.navigationItem.title = "アニメ番組一覧（東京）"
-        
         // 番組表の取得
         getAnimeList()
     }
