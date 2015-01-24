@@ -28,6 +28,7 @@ class MasterViewController: UITableViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         appDelegate.sharedData["navigationBarHeight"] = self.navigationController?.navigationBar.frame.size.height
         
+        MRProgressOverlayView.showOverlayAddedTo(self.view, animated: true) // ローディング表示
         // 番組表の取得
         getAnimeList()
     }
@@ -114,6 +115,8 @@ class MasterViewController: UITableViewController {
             dispatch_async(dispatch_get_main_queue(), {
                 // テーブルビューの更新をする
                 self.tableView.reloadData()
+                
+                MRProgressOverlayView.dismissAllOverlaysForView(self.view, animated: true)  // ローディング解除
             })
         })
         task.resume()
