@@ -1,1 +1,2 @@
 pod 'MRProgress'
+pod 'Appirater'

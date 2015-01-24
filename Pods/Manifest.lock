@@ -1,4 +1,5 @@
 PODS:
+  - Appirater (2.0.4)
   - MRProgress (0.8.1):
     - MRProgress/ActivityIndicator (= 0.8.1)
     - MRProgress/Blur (= 0.8.1)
@@ -29,9 +30,11 @@ PODS:
     - MRProgress/Helper
 
 DEPENDENCIES:
+  - Appirater
   - MRProgress
 
 SPEC CHECKSUMS:
+  Appirater: cbdb7f305562cfde585300bfff86da01ae559deb
   MRProgress: cd12726e001ea25dec133322d34cc4754cbc58f8
 
 COCOAPODS: 0.35.0
