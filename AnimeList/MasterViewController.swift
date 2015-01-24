@@ -93,6 +93,11 @@ class MasterViewController: UITableViewController {
     func getAnimeList() {
         let url = NSURL(string: "http://animemap.net/api/table/tokyo.json")!
         var task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { data, response, error in
+            if data.length <= 0 {
+                println("data size is 0")
+                return
+            }
+            
             // JSONデータを辞書に変換する
             let dict = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
             //println("dictionary=\(dict)")   // 取得データの確認
